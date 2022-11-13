@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./app2.js" defer></script>
+    <script type="module" src="./app.js" defer></script>
+    <script type="text/javascript">
+        let mode = localStorage.getItem("DarkModeTrackIt");
+        if (mode == "off")
+            document.documentElement.setAttribute("data-theme", "root");
+        else
+            document.documentElement.setAttribute("data-theme", "dark");
+    </script>
+</head>
+
+<body>
+    <br>
+    <h2 id="hero">Analysis dashboard</h2>
+    <div>
+        <div>
+            <!-- <input id="keyword" type="text"> -->
+        </div>
+        <div class="suggestions">
+
+        </div>
+        <div class="result">
+            <div class="result_table">
+                Loading...
+            </div>
+        </div>
+
+        <div class="features">
+            <div>
+                <div>Enable suggestion</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

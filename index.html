@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="./Sparrow.png" type="image/x-icon">
+    <title>Track it</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./main.js" defer></script>
+    <script src="./analytics/suggest_operation.js" type="module" defer></script>
+    <script type="text/javascript">
+        let mode = localStorage.getItem("DarkModeTrackIt");
+        if (mode == "off")
+            document.documentElement.setAttribute("data-theme", "root");
+        else
+            document.documentElement.setAttribute("data-theme", "dark");
+    </script>
+</head>
+
+<body>
+    <div class="toastNotify">Loading...</div>
+    <!-- COMMON OPACITORS AND HEADER -->
+    <div class="opacitor2" onclick="popupfiles()"></div>
+    <div class="opacitor3" onclick="popSaveAs()"></div>
+    <div class="header">
+        <div class="titleName">Track it</div>
+
+        <div class="selection" onclick="popupfiles()">
+            <p class="file-Name">
+                --ERROR--
+            </p>
+            <i class="fas fa-caret-down" style="position: absolute; right: 0.3rem;"></i>
+        </div>
+
+        <div class="desktopMenus">
+            <ul>
+                <li onclick="location.href='./import-export/import-export.html'">
+                    <p>Export-Import</p>
+                </li>
+                <li onclick="SwitchDisplay()">
+                    <p class="currentShow">Show Dates</p>
+                </li>
+                <li onclick="toggleCirc()">
+                    <p>Night mode</p>
+                </li>
+                <li onclick="location.href='./editMode.html'">
+                    <p>Edit File</p>
+                </li>
+                <li onclick=location.href='./analytics/analytics.html'>
+                    <p>Analysis</p>
+                </li>
+                <li onclick="popSaveAs()">
+                    <p>Create File</p>
+                </li>
+            </ul>
+        </div>
+        <div class="menus" onclick="toggleMenu()"><i class="fas fa-ellipsis-v"></i></div>
+    </div>
+
+    <div class="opacitor" onclick="toggleMenu()"></div>
+
+    <!-- ALL MOBILE MENU OPTIONS -->
+    <div class="menuItems">
+        <ul>
+            <li onclick="location.href='./import-export/import-export.html'">
+                <p>Export | Import</p>
+                <i class="fas fa-file-alt" style="font-size: 1.3rem; margin-left: 1rem; font-weight: bolder;"></i>
+            </li>
+            <li onclick="SwitchDisplay()">
+                <p class="currentShow">Show Dates</p>
+                <i class="far fa-calendar-alt" style="font-size: 1.3rem; margin-left: 2rem; font-weight: bolder;"></i>
+            </li>
+            <li>
+                <p>Night</p>
+                <div class="toggleme" style="margin-left: 3.7rem;" onclick="toggleCirc()">
+                    <div class="circle"></div>
+                </div>
+            </li>
+
+            <li onclick="location.href='./editMode.html'">
+                <p>Edit File</p> <i class="fas fa-pencil-alt"
+                    style="font-size: 1.3rem; margin-left: 4rem; font-weight: bolder;"></i>
+            </li>
+            <li onclick="shareList()">
+                <p>Share</p> <i class="fab fa-whatsapp"
+                    style="font-size: 1.3rem; margin-left: 5rem; font-weight: bolder;color: var(--green-variant);"></i>
+            </li>
+            <li onclick="republishChanges()" class="republish">
+                <p>Republish</p>
+            </li>
+            <li onclick=location.href='./analytics/analytics.html'>
+                <p>Analysis</p>
+            </li>
+            <li onclick="popSaveAs()">
+                <p>Create File</p>
+            </li>
+        </ul>
+    </div>
+    <div class="inpuTools">
+        <div class="row1">
+            <input type="text" id="nameOfItem" placeholder="Enter item name" autocomplete="off">
+            <input type="tel" id="price" placeholder="Price">
+        </div>
+        <div class="row1">
+            <div class="butnSet">
+                <button onclick="deleteList()"> <i class="fas fa-trash-alt"></i> </button>
+                <button style="font-size: 1.2rem;" onclick="addval()"> <i class="fas fa-plus"></i> </button>
+            </div>
+        </div>
+    </div>
+    <div class="optionNav">
+        <div onclick="SwitchDisplay()">
+            <span>Date</span>
+            <i class="far fa-calendar-alt" style="font-size: 1.3rem; margin-left: 0.5rem; font-weight: bolder;"></i>
+        </div>
+        <div onclick="shareList()">
+            Share
+
+            <i class="fab fa-whatsapp" style="font-size: 1.3rem; margin-left: 0.5rem; font-weight: bolder;color: var(--green-variant);"></i>
+        </div>
+        <div onclick="location.href='./editMode.html'">
+            <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder;" class="fas fa-pencil-alt"></i>
+        </div>
+        <div onclick="toggleCirc()">
+            <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder;" class="far fa-moon"></i>
+        </div>
+        <div onclick="deleteList()">
+            <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder; color: rgb(219, 48, 48);" class="fas fa-trash-alt"></i>
+        </div>
+    </div>
+    <div class="chooseFiles">
+        <ul class="allFiles">
+            <li>Empty </li>
+        </ul>
+    </div>
+    <div class="saveAs">
+        <input type="text" placeholder="Enter filename.." class="fileName">
+        <div onclick="CreateFile()">Save</div>
+    </div>
+    <table id="allcell"></table>
+    <div class="selectall">
+        <div class="ksfslk">
+            <p style="font-size: 1.2rem;margin-right: 1rem; color: white;">Select all</p>
+            <input type="checkbox" style="height: 1.3rem; width: 1.3rem;" onchange="selectAllOpt()">
+        </div>
+        <div class="closbtn" onclick="closeSlect()">&times;</div>
+    </div>
+</body>
+
+</html>

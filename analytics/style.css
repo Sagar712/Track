@@ -1,0 +1,81 @@
+@import url(../style.css);
+
+body {
+    margin: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    overflow-x: hidden;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+input {
+    height: 2rem;
+    width: 20rem;
+    font-size: 1rem;
+}
+
+.app-holder{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.result_table{
+    width: 100vw;
+}
+.analytics table{
+    border-collapse: collapse;
+}
+
+.analytics th{
+    border: 1px solid rgb(171, 204, 170);
+    background-color: rgb(49, 68, 48);
+    padding: 0.5rem;
+    color: rgb(197, 219, 178);
+}
+.analytics td{
+    min-width: 8rem;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.analytics td:nth-last-child(1){
+    text-align: right;
+}
+
+.special{
+    background-color: rgb(185, 207, 183);
+    color: black;
+    font-weight: bold;
+}
+
+.suggestions{
+    
+}
+
+.result div{
+    display: flex;
+    width: 95vw;
+    justify-content: center;
+}
+
+.submit{
+    background-color: var(--text-color);
+    color: var(--background-color);
+    padding: .7rem;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.submit:active{
+    transform: scale(0.97);
+}
+
+@media screen and (max-width:930px)  {
+    table{
+        border-collapse: collapse;
+        width: 100%;
+    }
+}

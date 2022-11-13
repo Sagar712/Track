@@ -1,8 +1,8 @@
 let data;
 let ranks = []
 
-async function main() {
-    await fetch("./subjects.json")
+async function main(path='./subjects.json') {
+    await fetch(path)
         .then(res => res.json())
         .then(response => {
             data = response

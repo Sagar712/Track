@@ -134,6 +134,7 @@ async function addval() {
     console.log(masterDb);
     setItem(masterDb);
     handleToastForAWhile('rgb(175, 255, 206)', "Added !")
+    document.querySelector('#suggest').innerHTML = ''
     if (currTimeShow)
         SwitchDisplay();
     else

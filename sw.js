@@ -1,9 +1,8 @@
 let collectin_name =  "TractMe"
 const assets = ["./", "./main.js", "./style.css", "./Sparrow.png", "./editMode.html","./edit.js",
-"./contact-us/contact.html", "./contact-us/otherstyle.css", 
-"./import-export/import-export.css", "./import-export/import-export.html", "./import-export/import-export.js", 
-"./analytics/style.css", "./analytics/subjects.json", "./analytics/app.js", 
-"./analytics/analytics.html", "./analytics/suggest.js", "./analytics/suggest_operation.js"]
+"./import-export/import-export.css", "./import-export/import-export.html", "./import-export/import-export.js",
+"./analytics/analytics.html", "./analytics/app.js", "./analytics/style.css", 
+"./analytics/subjects.json", "./analytics/suggest_operation.js", "./analytics/suggest.js"]
 
 self.addEventListener("install", e => {
     e.waitUntil(

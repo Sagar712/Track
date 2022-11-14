@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <link rel="shortcut icon" href="./Sparrow.png" type="image/x-icon">
-    <title>Track it</title>
+    <title>Track Me</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
     <link rel="manifest" href="./manifest.json">
@@ -14,7 +14,19 @@
     <script src="./main.js" defer></script>
     <script src="./analytics/suggest_operation.js" type="module" defer></script>
     <script type="text/javascript">
-        let mode = JSON.parse(localStorage.getItem("AllTrackItData")).darkmode
+
+        if (localStorage.getItem("AllTrackMeData") == undefined) {
+            let obj = {
+                darkmode: 'off', 
+                current_index: 0,
+                0: {
+                    title: "default",
+                    data: {}
+                }
+            }
+            localStorage.setItem("AllTrackMeData", JSON.stringify(obj))
+        }
+        let mode = JSON.parse(localStorage.getItem("AllTrackMeData")).darkmode
         if (mode == "off")
             document.documentElement.setAttribute("data-theme", "root");
         else
@@ -126,7 +138,8 @@
         <div onclick="shareList()">
             Share
 
-            <i class="fab fa-whatsapp" style="font-size: 1.3rem; margin-left: 0.5rem; font-weight: bolder;color: var(--green-variant);"></i>
+            <i class="fab fa-whatsapp"
+                style="font-size: 1.3rem; margin-left: 0.5rem; font-weight: bolder;color: var(--green-variant);"></i>
         </div>
         <div onclick="location.href='./editMode.html'">
             <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder;" class="fas fa-pencil-alt"></i>
@@ -135,7 +148,8 @@
             <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder;" class="far fa-moon"></i>
         </div>
         <div onclick="deleteList()">
-            <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder; color: rgb(219, 48, 48);" class="fas fa-trash-alt"></i>
+            <i style="font-size: 1.3rem;margin: auto 0.3rem; font-weight: bolder; color: rgb(219, 48, 48);"
+                class="fas fa-trash-alt"></i>
         </div>
     </div>
     <div class="chooseFiles">

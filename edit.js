@@ -1,5 +1,5 @@
 let celldata = document.getElementById("allcell");
-const DB_NAME = "AllTrackItData"
+const DB_NAME = "AllTrackMeData"
 
 console.log(JSON.parse(localStorage.getItem(DB_NAME)));
 

@@ -31,7 +31,7 @@ inputDial.addEventListener('change', function(e){
 
 async function DataAppend(items) {
     
-    if(localStorage.getItem("AllTrackItData")==null){
+    if(localStorage.getItem("AllTrackMeData")==null){
         let obj = {
             current_index:0,
             0:{
@@ -39,11 +39,11 @@ async function DataAppend(items) {
                 data:{}
             }
         }
-        localStorage.setItem('AllTrackItData', JSON.stringify(obj));
+        localStorage.setItem('AllTrackMeData', JSON.stringify(obj));
     }
     items.current_index=0;
     let i=0, j=0
-    let masterDb = JSON.parse(localStorage.getItem('AllTrackItData'));
+    let masterDb = JSON.parse(localStorage.getItem('AllTrackMeData'));
     while (masterDb[i] != null) {
         i++
     }
@@ -51,14 +51,14 @@ async function DataAppend(items) {
         masterDb[i++] = items[j]
         j++
     }
-    localStorage.setItem("AllTrackItData", JSON.stringify(masterDb));
+    localStorage.setItem("AllTrackMeData", JSON.stringify(masterDb));
 }
 
 function exportFile() {
     let masterDb = {
         
     };
-    let listDb = JSON.parse(localStorage.getItem("AllTrackItData"));
+    let listDb = JSON.parse(localStorage.getItem("AllTrackMeData"));
     if(listDb != null)
         masterDb = listDb;
     console.log(masterDb);

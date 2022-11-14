@@ -15,7 +15,7 @@ if("serviceWorker" in navigator){
 
 //
 
-const DB_NAME = "AllTrackItData"
+const DB_NAME = "AllTrackMeData"
 let ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
 const MODE = "DarkModeTrackIt"
 const Publish_URL = "https://sagar712.github.io/trackit/publish/publish.html?id="
@@ -449,7 +449,7 @@ function totalcalcReturn(str, names, quants, prices) {
 
 function handler(id) {
 
-    let masterDb = JSON.parse(localStorage.getItem("AllTrackItData"));
+    let masterDb = JSON.parse(localStorage.getItem("AllTrackMeData"));
     let j = 1;
     let i = 0;
     let cp = 1;
@@ -474,7 +474,7 @@ function handler(id) {
         copyDb.items[cp++] = masterDb.items[j];
         j++;
     }
-    localStorage.setItem("AllTrackItData", JSON.stringify(copyDb));
+    localStorage.setItem("AllTrackMeData", JSON.stringify(copyDb));
     backupCellPush(masterDb);
     displayList();
 }
@@ -604,7 +604,7 @@ function render_with_check(Id) {
 	    <th>Prices</th>
         <th></th>
     </tr>`;
-    if (localStorage.getItem("AllTrackItData") != null) {
+    if (localStorage.getItem("AllTrackMeData") != null) {
         let masterDb = getItem();
         let j = 1;
         while (masterDb[j] != null) {

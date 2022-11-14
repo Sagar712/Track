@@ -1,7 +1,7 @@
 import { fetch_subject_for_query, main } from "./suggest.js";
 
 console.log("Hello there..");
-let ALL_DATA = JSON.parse(localStorage.getItem("AllTrackItData"))
+let ALL_DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
 
 async function callFirst() {
     await main('./analytics/subjects.json')

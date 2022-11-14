@@ -4,7 +4,7 @@ let ID = params.get('id');
 let celldata = document.getElementById("allcell");
 let Toast = document.querySelector('.toastNotify')
 Toast.classList.add('animate')
-const DB_NAME = "AllTrackItData"
+const DB_NAME = "AllTrackMeData"
 
 let Data = null
 

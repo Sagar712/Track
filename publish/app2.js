@@ -1,4 +1,4 @@
-const DB_NAME = "AllTrackItData"
+const DB_NAME = "AllTrackMeData"
 const My_URL = 'https://hishob-app.herokuapp.com/publish/'
 const Publish_URL  = "https://sagar712.github.io/trackit/publish/publish.html?id="
 let Data = JSON.parse(localStorage.getItem(DB_NAME))

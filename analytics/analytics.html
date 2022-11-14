@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./style.css">
     <script type="module" src="./app.js" defer></script>
     <script type="text/javascript">
-        let mode = JSON.parse(localStorage.getItem("AllTrackItData")).darkmode
+        let mode = JSON.parse(localStorage.getItem("AllTrackMeData")).darkmode
         if (mode == "off")
             document.documentElement.setAttribute("data-theme", "root");
         else
@@ -52,11 +52,11 @@
     </div>
 
     <script>
-        let App_data = JSON.parse(localStorage.getItem('AllTrackItData'))
+        let App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
         if (App_data.enable_suggestion == undefined) {
             App_data.enable_suggestion = 'on'
             App_data.report_for_default = 'on'
-            localStorage.setItem('AllTrackItData', JSON.stringify(App_data))
+            localStorage.setItem('AllTrackMeData', JSON.stringify(App_data))
         }
         if (App_data.enable_suggestion == 'on')
             document.querySelectorAll('.inner')[0].classList.add('move')
@@ -69,7 +69,7 @@
             document.querySelectorAll('.inner')[1].classList.remove('move')
 
         function switchIt(e) {
-            App_data = JSON.parse(localStorage.getItem('AllTrackItData'))
+            App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
             console.log(e);
             let current_outer = document.querySelectorAll('.inner')[e - 1]
             current_outer.classList.toggle('move')
@@ -90,7 +90,7 @@
                     location.reload()
                 }
             }
-            localStorage.setItem('AllTrackItData', JSON.stringify(App_data))
+            localStorage.setItem('AllTrackMeData', JSON.stringify(App_data))
         }
     </script>
 

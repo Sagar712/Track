@@ -1,6 +1,6 @@
 import { fetch_subject_for_query, main } from "./suggest.js";
 
-let App_data = JSON.parse(localStorage.getItem('AllTrackItData'))
+let App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
 
 console.log(App_data);
 let genrated_report = false

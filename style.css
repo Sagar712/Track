@@ -15,6 +15,8 @@
     --table-border: #545454;
     --date-color: #602800;
     --selection-back: rgb(228, 190, 190);
+    --sugestion-box: rgb(138, 198, 176);
+    --sugestion-border: rgb(55, 115, 93);
 }
 
 [data-theme="dark"] {
@@ -34,6 +36,8 @@
     --table-border: #AEAEAE;
     --date-color: #e0ca00;
     --selection-back: rgb(66, 66, 66);
+    --sugestion-box: rgb(16, 44, 34);
+    --sugestion-border: rgb(33, 73, 58);
 }
 
 *{
@@ -484,20 +488,21 @@ td:nth-child(last){
     width: 10.1rem;
     overflow-x: hidden;
     z-index: 999;
-    background-color: var(--menu-border);
+    background-color: var(--sugestion-box);
 }
 
 .suggestions ul{
     list-style: none;
     padding: 0;
 }
+
 .suggestions li{
     display: flex;
     align-items: center;
     padding-left: 0.5rem;
     height: 2.5rem;
     font-size: 1.2rem;
-    border-bottom: 1px solid var(--table-border);
+    border-bottom: 1px solid var(--sugestion-border);
     color: var(--text-color);
 }
 

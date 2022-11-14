@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./style.css">
     <script type="module" src="./app.js" defer></script>
     <script type="text/javascript">
-        let mode = localStorage.getItem("DarkModeTrackIt");
+        let mode = JSON.parse(localStorage.getItem("AllTrackItData")).darkmode
         if (mode == "off")
             document.documentElement.setAttribute("data-theme", "root");
         else
@@ -35,12 +35,64 @@
         </div>
 
         <div class="features">
-            <div>
+            <div class="feature_child">
                 <div>Enable suggestion</div>
+                <div class="outer" id="1" onclick="switchIt(1)">
+                    <div class="inner"></div>
+                </div>
+            </div>
+            <div class="feature_child">
+                <div>Generate report for default</div>
+                <div class="outer" id="2" onclick="switchIt(2)">
+                    <div class="inner"></div>
+                </div>
             </div>
         </div>
 
     </div>
+
+    <script>
+        let App_data = JSON.parse(localStorage.getItem('AllTrackItData'))
+        if (App_data.enable_suggestion == undefined) {
+            App_data.enable_suggestion = 'on'
+            App_data.report_for_default = 'on'
+            localStorage.setItem('AllTrackItData', JSON.stringify(App_data))
+        }
+        if (App_data.enable_suggestion == 'on')
+            document.querySelectorAll('.inner')[0].classList.add('move')
+        else
+            document.querySelectorAll('.inner')[0].classList.remove('move')
+
+        if (App_data.report_for_default == 'on')
+            document.querySelectorAll('.inner')[1].classList.add('move')
+        else
+            document.querySelectorAll('.inner')[1].classList.remove('move')
+
+        function switchIt(e) {
+            App_data = JSON.parse(localStorage.getItem('AllTrackItData'))
+            console.log(e);
+            let current_outer = document.querySelectorAll('.inner')[e - 1]
+            current_outer.classList.toggle('move')
+            console.log(current_outer.classList.value.includes('move'));
+            if (current_outer.classList.value.includes('move')) {
+                if (e-1 == 0)
+                    App_data.enable_suggestion = 'on'
+                if (e-1 == 1){
+                    App_data.report_for_default = 'on'
+                    location.reload()
+                }
+            }
+            else {
+                if (e-1 == 0)
+                    App_data.enable_suggestion = 'off'
+                if (e-1 == 1){
+                    App_data.report_for_default = 'off'
+                    location.reload()
+                }
+            }
+            localStorage.setItem('AllTrackItData', JSON.stringify(App_data))
+        }
+    </script>
 
 </body>
 

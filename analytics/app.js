@@ -1,32 +1,9 @@
 import { fetch_subject_for_query, main } from "./suggest.js";
 
 let App_data = JSON.parse(localStorage.getItem('AllTrackItData'))
+
 console.log(App_data);
 let genrated_report = false
-
-// document.getElementById('keyword').addEventListener('keyup', e => {
-//     let k = 0, result_str = ''
-//     let current_str = document.getElementById('keyword')
-//     let all_ranks = fetch_subject_for_query(current_str.value)
-//     console.log(all_ranks);
-//     if (current_str.value.length > 2) {
-//         while (all_ranks[k] != undefined) {
-//             result_str += create_row(all_ranks[k]["closest word found"], (all_ranks[k]["match percentage"] * 100).toFixed(2), all_ranks[k].category)
-//             k++
-//         }
-//         document.querySelector('.suggestions').innerHTML = `<table> 
-//             ${result_str}
-//         </table>`
-//     }
-//     else
-//         document.querySelector('.suggestions').innerHTML = ''
-
-// })
-
-// document.querySelector('.submit').addEventListener('click', () => {
-//     main()
-//     main_controller()
-// })
 
 async function Start() {
     await main()
@@ -76,8 +53,9 @@ async function main_controller() {
 
     console.log(categories_sum);
 
-    let table = document.createElement('table')
-    table.className = 'analytics'
+    let table_big = document.createElement('table')
+    table_big.className = 'analytics'
+    let table = document.createElement('tbody')
     let row = document.createElement('tr')
     para = document.createElement('th')
     para.innerText = 'Category'
@@ -110,8 +88,8 @@ async function main_controller() {
     para.innerText = `₹ ${Readable_number(whole_sum)}`
     row.appendChild(para)
     table.appendChild(row)
-
-    Result_div.appendChild(table)
+    table_big.appendChild(table)
+    Result_div.appendChild(table_big)
 }
 
 function Readable_number(num) {
@@ -150,6 +128,10 @@ async function aiAnalytics() {
 
     while (App_data[i] != null) {
         let current_data = App_data[i].data
+        if(App_data.report_for_default == 'on' && i>0){
+            break;
+        }
+
         let j = 1
 
         while (current_data[j] != null) {
@@ -183,7 +165,6 @@ async function mod_add(num1, num2) {
         num2 = -num2
     return num1 + num2
 }
-
 
 function suggestion_rules(all_ranks) {
     let new_list = {}

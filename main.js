@@ -1,13 +1,13 @@
-// if("serviceWorker" in navigator){
-//     navigator.serviceWorker.register("./sw.js").then(
-//         registration => {
-//             console.log("SW registered");
-//             console.log(registration);
-//         }
-//     ).catch(error => {
-//         console.log("SW failed");
-//     })
-// }
+if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("./sw.js").then(
+        registration => {
+            console.log("SW registered");
+            console.log(registration);
+        }
+    ).catch(error => {
+        console.log("SW failed");
+    })
+}
 
 //REGEX exercise
 
@@ -16,16 +16,25 @@
 //
 
 const DB_NAME = "AllTrackItData"
+let ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
 const MODE = "DarkModeTrackIt"
 const Publish_URL = "https://sagar712.github.io/trackit/publish/publish.html?id="
 
 let Toast = document.querySelector('.toastNotify')
 let timout = null
 let dark = 1;
-if (localStorage.getItem("DarkModeTrackIt") == "on") {
+if (ALL_DATA.darkmode == "on") {
     document.querySelector('.circle').classList.add('move');
     document.querySelector('.toggleme').classList.add('move');
     dark = 0;
+}
+
+function suggestionSelected(id) {
+    let text = document.querySelector('#nameOfItem')
+    let value = document.getElementById(id).innerText
+    console.log(value);
+    text.value = value
+    document.getElementById('suggest').innerHTML = ''
 }
 
 function popupfiles() {
@@ -38,12 +47,14 @@ function toggleCirc() {
     document.querySelector('.toggleme').classList.toggle('move');
     if (dark == 1) {
         document.documentElement.setAttribute("data-theme", "dark");
-        localStorage.setItem("DarkModeTrackIt", "on");
+        ALL_DATA.darkmode = 'on'
+        localStorage.setItem(DB_NAME, JSON.stringify(ALL_DATA))
         dark = 0;
     }
     else {
         document.documentElement.setAttribute("data-theme", "root");
-        localStorage.setItem("DarkModeTrackIt", "off");
+        ALL_DATA.darkmode = 'off'
+        localStorage.setItem(DB_NAME, JSON.stringify(ALL_DATA))
         dark = 1;
     }
 }

@@ -1,8 +1,18 @@
+let updateBtn = document.getElementById('updatebtn')
+
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("./sw.js").then(
         registration => {
             console.log("SW registered");
             console.log(registration);
+
+            //Update App mechanism
+            updateBtn.onclick = () => {
+                registration.unregister().then(booln => {
+                    if(booln)
+                        location.reload()
+                })
+            }
         }
     ).catch(error => {
         console.log("SW failed");

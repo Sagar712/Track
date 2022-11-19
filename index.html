@@ -14,7 +14,7 @@
     <script src="./main.js" defer></script>
     <script src="./analytics/suggest_operation.js" type="module" defer></script>
     <script type="text/javascript">
-
+        console.log(JSON.parse(localStorage.getItem("AllTrackMeData")));
         if (localStorage.getItem("AllTrackMeData") == undefined) {
             let obj = {
                 darkmode: 'off', 
@@ -129,7 +129,7 @@
         <div class="row1">
             <div class="butnSet">
                 <button onclick="deleteList()"> <i class="fas fa-trash-alt"></i> </button>
-                <button style="font-size: 1.2rem;" onclick="addval()"> <i class="fas fa-plus"></i> </button>
+                <button style="font-size: 1.2rem;" id="addBtn" onclick="addval()"> <i class="fas fa-plus"></i> </button>
             </div>
         </div>
     </div>
@@ -171,6 +171,16 @@
             <input type="checkbox" style="height: 1.3rem; width: 1.3rem;" onchange="selectAllOpt()">
         </div>
         <div class="closbtn" onclick="closeSlect()">&times;</div>
+    </div>
+    <div class="chooseCategory hide">
+        <br>
+        <div><p>Does this item belong to...</p> <button class="closebutn">&times;</button></div>
+        <div class="categories">
+            <div> <button class="categoryButn">Food</button> <button class="categoryButn">Shopping</button> <button class="categoryButn">Money-transfer</button></div>
+            <div> <button class="categoryButn">Health</button> <button class="categoryButn">Travel</button> <button class="categoryButn">Entertainment</button></div>
+            <div> <button class="categoryButn">Other</button> </div>
+        </div>
+        <br>
     </div>
 </body>
 

@@ -1,7 +1,7 @@
 let data;
 let ranks = []
 
-async function main(path='./subjects.json') {
+async function main(path = './subjects.json') {
     await fetch(path)
         .then(res => res.json())
         .then(response => {
@@ -11,24 +11,38 @@ async function main(path='./subjects.json') {
     console.log(data);
 }
 
-async function fetch_subject_for_query(query) {
+async function fetch_subject_for_query(query, custom_subjects = false, data = null) {
     //reading query from input
     let queryParts = query.split(" ")
     console.log(queryParts);
     let current_result = "unknown"
     let last_result = { 'match percentage': 0 }
     ranks = []
+    let DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
     for (let i = 0; i < queryParts.length; i++) {
-        let search_result = await SearchSubject(queryParts[i])
-        let search_result_slang_word = await SearchSubject(queryParts[i], 'slang_subjects')
+        await SearchSubject(queryParts[i])
+        await SearchSubject(queryParts[i], 'slang_subjects')
+        if (custom_subjects)
+            await SearchSubject(queryParts[i], 'custom_subjects', data)
+
     }
     return showRanks()
 }
 
 
 // Proper Subject indexing
-async function SearchSubject(word, dataset = 'proper_subjects') {
-    let all_keys = Object.keys(data[dataset])
+async function SearchSubject(word, dataset = 'proper_subjects', custom_subjects) {
+    let all_keys, current_data
+    if (dataset == 'custom_subjects') {
+        if (custom_subjects == undefined)
+            return
+        all_keys = Object.keys(custom_subjects)
+        current_data = custom_subjects
+    }
+    else {
+        all_keys = Object.keys(data[dataset])
+        current_data = data[dataset]
+    }
     let closest_word = "-"
     let similarity_percent = 0
     let highest_percent = 0
@@ -37,7 +51,7 @@ async function SearchSubject(word, dataset = 'proper_subjects') {
     //iterating through each category
     for (let j = 0; j < all_keys.length; j++) {
         current_key = all_keys[j];
-        let arr = data[dataset][current_key]
+        let arr = current_data[current_key]
         //console.log(arr);
         let rank_percent = 0
 
@@ -187,4 +201,4 @@ function sequence_match(base, test) {
     //console.log(base_split, test_split);
 }
 
-export { main,fetch_subject_for_query }
+export { main, fetch_subject_for_query }

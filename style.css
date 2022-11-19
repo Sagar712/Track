@@ -506,6 +506,65 @@ td:nth-child(last){
     color: var(--text-color);
 }
 
+.chooseCategory{
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--sugestion-box);
+    border-radius: 0.7rem;
+    padding: 0.5rem;
+    overflow: hidden;
+    transition: 0.5s all ease;
+}
+.chooseCategory.hide{
+    bottom: -110%;
+    transition: 0.5s all ease;
+}
+.categories button{
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 1rem;
+    background-color: #4f795f;
+    color: var(--background-color);
+    cursor: pointer;
+}
+.closebutn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.9rem;
+    font-size: 1.5rem;
+    border: none;
+    border-bottom-left-radius: 0.6rem;
+    background-color: #e77171;
+}
+.chooseCategory div{
+    display: flex;
+    justify-content: space-between;
+}
+button:active{
+    transform: scale(0.95);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.categories{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.categories div{
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 /*-----------------------FOR MEDIA-----------------------*/
 
 @media screen and (max-width:930px)  {
@@ -519,6 +578,10 @@ td:nth-child(last){
         margin-left: 28%;
     }
     
+    .chooseCategory{
+        min-width: 90%;
+        bottom: 20%;
+    }
     .chooseFiles{
         position: fixed;
         top: 50%;

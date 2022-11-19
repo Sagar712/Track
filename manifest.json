@@ -3,7 +3,7 @@
     "short_name":"Tract me",
     "start_url":".",
     "background_color":"#fff",
-    "theme_color":"#C5000C",
+    "theme_color":"#3b3b3b",
     "display":"standalone",
     "icons":[
         {

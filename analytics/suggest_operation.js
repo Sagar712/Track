@@ -1,7 +1,7 @@
 import { fetch_subject_for_query, main } from "./suggest.js";
 
-console.log("Hello there..");
-let ALL_DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
+let DB_NAME = "AllTrackMeData"
+let ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
 let all_result = []
 let text = ''
 
@@ -15,7 +15,7 @@ document.getElementById('nameOfItem').addEventListener('keyup', () => {
         return
 
     text = document.querySelector('#nameOfItem').value
-    ALL_DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
+    ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
 
     console.log(text);
     let k = 0, temp
@@ -53,6 +53,7 @@ document.getElementById('addBtn').addEventListener('click', () => {
             console.log("Low confidence");
             if (ALL_DATA.enable_suggestion == 'off')
                 return
+            document.querySelector('#current_word').textContent = `"${text}"`
             document.querySelector('.chooseCategory').classList.remove('hide')
         }
 })
@@ -60,9 +61,10 @@ document.getElementById('addBtn').addEventListener('click', () => {
 document.querySelector('.closebutn').addEventListener('click', () => {
     document.querySelector('.chooseCategory').classList.add('hide')
 })
+
 document.querySelectorAll('.categoryButn').forEach(button => {
     button.addEventListener('click', () => {
-        ALL_DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
+        ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
         if (ALL_DATA.my_dictonary == null) {
             let obj_temp = {
                 entertainment: [],
@@ -76,12 +78,12 @@ document.querySelectorAll('.categoryButn').forEach(button => {
             ALL_DATA.my_dictonary = obj_temp
             localStorage.setItem('AllTrackMeData', JSON.stringify(ALL_DATA))
         }
-        ALL_DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
+        ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
 
         console.log(button.textContent);
         ALL_DATA.my_dictonary[button.textContent.toLowerCase()].push(text.toLowerCase())
         localStorage.setItem('AllTrackMeData', JSON.stringify(ALL_DATA))
-        ALL_DATA = JSON.parse(localStorage.getItem("AllTrackMeData"))
+        ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
         console.log(ALL_DATA);
         document.querySelector('.chooseCategory').classList.add('hide')
     })

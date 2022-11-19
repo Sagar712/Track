@@ -136,7 +136,7 @@ async function aiAnalytics() {
 
         while (current_data[j] != null) {
 
-            let temp_result = await fetch_subject_for_query(current_data[j]['name'])
+            let temp_result = await fetch_subject_for_query(current_data[j]['name'], true, App_data.my_dictonary)
             let bridge_obj = { item_name: '', found_name: '', category: '', match: '', price: 0 }
 
             bridge_obj.item_name = current_data[j]['name']

@@ -42,21 +42,40 @@
                 </div>
             </div>
             <div class="feature_child">
-                <div>Generate report for default</div>
+                <div>Generate Report for specific</div>
                 <div class="outer" id="2" onclick="switchIt(2)">
                     <div class="inner"></div>
                 </div>
             </div>
+            <div class="feature_child">
+                <div>Choose file</div>
+                <!-- <div class="outer" id="2" onclick="switchIt(2)">
+                    <div class="inner"></div>
+                </div> -->
+                <div class="selection" onclick="popupfiles()">
+                    <p class="file-Name">
+                        --ERROR--
+                    </p>
+                    <i class="fas fa-caret-down" style="position: absolute; right: 0.3rem;"></i>
+                </div>
+            </div>
         </div>
+        <div class="chooseFiles">
+            <ul class="allFiles">
+                <li>Empty </li>
+            </ul>
+        </div>
+        <div class="opacitor2" onclick="popupfiles()"></div>
 
     </div>
 
     <script>
-        let App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
+        let DB_DATA = "AllTrackMeData"
+        let App_data = JSON.parse(localStorage.getItem(DB_DATA))
         if (App_data.enable_suggestion == undefined) {
             App_data.enable_suggestion = 'on'
             App_data.report_for_default = 'on'
-            localStorage.setItem('AllTrackMeData', JSON.stringify(App_data))
+            localStorage.setItem(DB_DATA, JSON.stringify(App_data))
         }
         if (App_data.enable_suggestion == 'on')
             document.querySelectorAll('.inner')[0].classList.add('move')
@@ -69,28 +88,52 @@
             document.querySelectorAll('.inner')[1].classList.remove('move')
 
         function switchIt(e) {
-            App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
+            App_data = JSON.parse(localStorage.getItem(DB_DATA))
             console.log(e);
             let current_outer = document.querySelectorAll('.inner')[e - 1]
             current_outer.classList.toggle('move')
             console.log(current_outer.classList.value.includes('move'));
             if (current_outer.classList.value.includes('move')) {
-                if (e-1 == 0)
+                if (e - 1 == 0)
                     App_data.enable_suggestion = 'on'
-                if (e-1 == 1){
+                if (e - 1 == 1) {
                     App_data.report_for_default = 'on'
                     location.reload()
                 }
             }
             else {
-                if (e-1 == 0)
+                if (e - 1 == 0)
                     App_data.enable_suggestion = 'off'
-                if (e-1 == 1){
+                if (e - 1 == 1) {
                     App_data.report_for_default = 'off'
                     location.reload()
                 }
             }
-            localStorage.setItem('AllTrackMeData', JSON.stringify(App_data))
+
+            localStorage.setItem(DB_DATA, JSON.stringify(App_data))
+        }
+
+        function popupfiles() {
+            document.querySelector('.chooseFiles').classList.toggle('show');
+            document.querySelector('.opacitor2').classList.toggle('active');
+        }
+
+        //Feeding choose files
+
+        let files = "";
+        let obj = JSON.parse(localStorage.getItem(DB_DATA));
+        let i = 0;
+        while (obj[i] != null) {
+            files += `<li> 
+            <div class="nameOfFile" onclick="openFile(${i})"><p>${obj[i].title}</p></div>
+            </li>`;
+            i++;
+        }
+        document.querySelector('.allFiles').innerHTML = files;
+
+        //Handling Open file:
+        function openFile(id) {
+            //main_controller(id)
         }
     </script>
 

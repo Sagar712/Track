@@ -5,18 +5,21 @@ let App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
 console.log(App_data);
 let genrated_report = false
 
+//Setting current file name:
+document.querySelector('.file-Name').textContent = App_data[App_data.current_index].title
+
 async function Start() {
     await main()
     await main_controller()
 }
 Start()
 
-async function main_controller() {
+async function main_controller(index = null) {
     let Result_div = document.querySelector('.result_table')
     let para;
     Result_div.innerHTML = ''
 
-    let result_obj = await aiAnalytics();
+    let result_obj = await aiAnalytics(index);
 
     let categories_sum = {
         food: 0,
@@ -96,7 +99,7 @@ function Readable_number(num) {
     let parts = `${num}`.split('').reverse()
     let new_str = '', thousand = false
 
-    for (let i = 0; i <parts.length; i++) {
+    for (let i = 0; i < parts.length; i++) {
         const element = parts[i];
         if (i == 3 && !thousand) {
             new_str += ','
@@ -113,7 +116,8 @@ function Readable_number(num) {
     return new_str.split('').reverse().join('')
 }
 
-async function aiAnalytics() {
+async function aiAnalytics(selected = null) {
+    App_data = JSON.parse(localStorage.getItem('AllTrackMeData'))
     let i = 0
     let categories = {
         food: [],
@@ -128,8 +132,11 @@ async function aiAnalytics() {
 
     while (App_data[i] != null) {
         let current_data = App_data[i].data
-        if(App_data.report_for_default == 'on' && i>0){
-            break;
+        if (App_data.report_for_default == 'on') {
+            if (selected)
+                current_data = App_data[selected].data
+            else
+                current_data = App_data[App_data.current_index].data
         }
 
         let j = 1
@@ -151,6 +158,10 @@ async function aiAnalytics() {
                 categories.unrecognized.push(bridge_obj)
             j++
         }
+
+        if (App_data.report_for_default == 'on')
+            break
+
         i++
     }
     return categories;

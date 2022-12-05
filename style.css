@@ -173,7 +173,7 @@ body{
     z-index: 0;
 }
 .titleName{
-    font-size: 1.45rem;
+    font-size: 1.5rem;
     font-weight: bold;
     margin-left: 1.3rem;
     color: var(--title-name);
@@ -572,6 +572,8 @@ button:active{
 @media screen and (max-width:930px)  {
     .header{
         position: sticky;
+        top: 0;
+        background-color: var(--background-color);
         z-index: 900;
     }
     
@@ -780,6 +782,7 @@ button:active{
         border-radius: 5px;
         border: 1px solid var(--table-border);
         overflow: hidden;
+        font-size: 1.2rem;
     }
     th{
         background-color: var(--table-header);

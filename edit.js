@@ -68,7 +68,7 @@ async function submitChange() {
     }
     masterDb[masterDb.current_index].data = newData
     await SaveChanges(masterDb)
-    window.history.go(-1);
+    location.href = './'
 }
 
 async function SaveChanges(db) {

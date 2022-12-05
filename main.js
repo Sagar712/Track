@@ -23,8 +23,6 @@ if("serviceWorker" in navigator){
 
 //console.log(/^[0-9+\-]*[+\-]*[0-9]+$/.test('090+7-90'));
 
-//
-
 const DB_NAME = "AllTrackMeData"
 let ALL_DATA = JSON.parse(localStorage.getItem(DB_NAME))
 const MODE = "DarkModeTrackIt"

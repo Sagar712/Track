@@ -48,7 +48,7 @@ function displayList() {
     }
 }
 
-function submitChange() {
+async function submitChange() {
     let masterDb = JSON.parse(localStorage.getItem(DB_NAME));
     let newData = {}
     for (let i = 1; i <= celldata.rows.length - 1; i++) {
@@ -67,10 +67,14 @@ function submitChange() {
         }
     }
     masterDb[masterDb.current_index].data = newData
-    localStorage.setItem(DB_NAME, JSON.stringify(masterDb));
+    await SaveChanges(masterDb)
     window.history.go(-1);
 }
 
+async function SaveChanges(db) {
+    localStorage.setItem(DB_NAME, JSON.stringify(db));
+    return 0
+}
 
 displayList();
 

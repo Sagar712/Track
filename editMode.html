@@ -15,10 +15,8 @@
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./style.css">
     <script type="text/javascript">
-        if(localStorage.getItem("DarkModeTrackIt") == null)
-            localStorage.setItem("DarkModeTrackIt", "off");
-        let mode =localStorage.getItem("DarkModeTrackIt");
-        if(mode=="off")
+        let mode = JSON.parse(localStorage.getItem("AllTrackMeData")).darkmode
+        if (mode == "off")
             document.documentElement.setAttribute("data-theme", "root");
         else
             document.documentElement.setAttribute("data-theme", "dark");

@@ -112,6 +112,16 @@ input {
     font-size: 1.1rem;
 }
 
+.copyright {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    font-style: normal;
+    color: var(--copyright);
+}
+
 @media screen and (max-width:930px) {
     .result_table table {
         border-collapse: collapse;

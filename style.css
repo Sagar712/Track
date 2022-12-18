@@ -3,6 +3,7 @@
     --text-color:rgb(0, 0, 0);
     --title-name: #C5000C;
     --border-color: black;
+    --copyright: rgb(89, 89, 89);
     --dust-bin: #C5000C;
     --green-variant: #007c32;
     --button-color: #fff;
@@ -24,6 +25,7 @@
     --text-color: #fff;
     --title-name: rgb(255, 255, 255);
     --border-color: #a9a9a9;
+    --copyright: rgb(138, 138, 138);
     --dust-bin: #ff5454;
     --green-variant: #32f27f;
     --button-color: #2f2f2f;
